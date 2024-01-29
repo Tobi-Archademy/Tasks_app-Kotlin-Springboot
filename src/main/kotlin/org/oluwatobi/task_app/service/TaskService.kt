@@ -7,6 +7,7 @@ import org.oluwatobi.task_app.exception.TaskNotFoundException
 import org.oluwatobi.task_app.repository.TaskRepository
 import org.springframework.data.crossstore.ChangeSetPersister
 import org.springframework.stereotype.Service
+import java.util.stream.Collectors
 
 @Service
 class TaskService(private val taskRepository: TaskRepository) {
@@ -33,4 +34,19 @@ class TaskService(private val taskRepository: TaskRepository) {
             throw TaskNotFoundException("Task with the ID: $id does not exist")
         }
     }
+
+    fun getTaskById(id: Long): TaskDto {
+        checkTaskForId(id)
+        val task: Task = taskRepository.findTaskById(id)
+        return mappingEntityToDto(task)
+    }
+
+    fun getAllTasks(): List<TaskDto> =
+        taskRepository.findAll().stream().map(this::mappingEntityToDto).collect(Collectors.toList())
+
+    fun getAllOpenTasks(): List<TaskDto> =
+        taskRepository.queryAllOpenTasks().stream().map(this::mappingEntityToDto).collect(Collectors.toList())
+
+    fun getAllClosedTasks(): List<TaskDto> =
+        taskRepository.queryAllClosedTasks().stream().map(this::mappingEntityToDto).collect(Collectors.toList())
 }
