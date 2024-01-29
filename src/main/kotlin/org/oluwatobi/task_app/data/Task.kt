@@ -29,5 +29,5 @@ class Task {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    val priority: Priority = Priority.LOW
+    var priority: Priority = Priority.LOW
 }
