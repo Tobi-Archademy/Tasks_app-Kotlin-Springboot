@@ -1,4 +1,4 @@
-package org.oluwatobi.task_app.model
+package org.oluwatobi.task_app.data.model
 
 import jakarta.persistence.Column
 import jakarta.persistence.EnumType
@@ -9,8 +9,6 @@ import org.oluwatobi.task_app.data.Priority
 import java.time.LocalDateTime
 
 data class TaskCreateRequest(
-    @NotBlank(message = "Task id can't be empty")
-    val id: Long,
 
     @NotNull(message = "Task description can't be empty")
     val description: String,

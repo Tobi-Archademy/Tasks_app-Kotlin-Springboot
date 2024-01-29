@@ -1,4 +1,4 @@
-package org.oluwatobi.task_app.model
+package org.oluwatobi.task_app.data.model
 
 import jakarta.persistence.Column
 import jakarta.persistence.EnumType
