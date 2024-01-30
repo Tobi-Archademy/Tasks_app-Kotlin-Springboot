@@ -30,7 +30,7 @@ class TaskController(private val service: TaskService) {
     fun createTask(@Valid @RequestBody request: TaskCreateRequest): ResponseEntity<TaskDto> =
         ResponseEntity(service.createTask(request), HttpStatus.OK)
 
-    @PostMapping("update/{id}")
+    @PatchMapping("update/{id}")
     fun updateTask(
         @PathVariable id: Long,
         @Valid @RequestBody request: TaskUpdateRequest
